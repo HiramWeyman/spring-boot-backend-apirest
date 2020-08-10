@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Recibo" pageWidth="612" pageHeight="600" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.2100000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="210"/>
+	<parameter name="id" class="java.lang.String"/>
+	<parameter name="p_ruta_img" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR2" class="java.lang.String"/>
+	<parameter name="receipt" class="java.lang.String"/>
+	<parameter name="authorizationCode" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+pago_folpago,
+pago_usuaid,
+pago_concepto,
+pago_foldescto,
+pago_montoapagar,
+pago_referencia,
+pago_fpago,
+pago_banco,
+pago_cnta_bancaria,
+pago_user,
+pago_fautoriza,
+pago_uautoriza,
+pago_polcont,
+pago_polpres,
+pago_estatus,
+usua_nombre,
+ures_descrip
+from tesoportal.tpagosonline,tesoportal.tusuarios,finanzas.fures  where pago_usuaid= usua_usuario
+and usua_ures=ures_ures
+and pago_folpago = $P{id}
+and pago_estatus = 'A']]>
+	</queryString>
+	<field name="PAGO_FOLPAGO" class="java.math.BigDecimal"/>
+	<field name="PAGO_USUAID" class="java.lang.String"/>
+	<field name="PAGO_CONCEPTO" class="java.lang.String"/>
+	<field name="PAGO_FOLDESCTO" class="java.math.BigDecimal"/>
+	<field name="PAGO_MONTOAPAGAR" class="java.math.BigDecimal"/>
+	<field name="PAGO_REFERENCIA" class="java.lang.String"/>
+	<field name="PAGO_FPAGO" class="java.sql.Timestamp"/>
+	<field name="PAGO_BANCO" class="java.math.BigDecimal"/>
+	<field name="PAGO_CNTA_BANCARIA" class="java.lang.String"/>
+	<field name="PAGO_USER" class="java.lang.String"/>
+	<field name="PAGO_FAUTORIZA" class="java.sql.Timestamp"/>
+	<field name="PAGO_UAUTORIZA" class="java.lang.String"/>
+	<field name="PAGO_POLCONT" class="java.math.BigDecimal"/>
+	<field name="PAGO_POLPRES" class="java.math.BigDecimal"/>
+	<field name="PAGO_ESTATUS" class="java.lang.String"/>
+	<field name="USUA_NOMBRE" class="java.lang.String"/>
+	<field name="URES_DESCRIP" class="java.lang.String"/>
+	<pageHeader>
+		<band height="117" splitType="Stretch">
+			<staticText>
+				<reportElement x="107" y="37" width="309" height="36"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recibo de Pago]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="0" width="309" height="37"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UJED - Tesorería General]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="415" y="16" width="153" height="43" backcolor="#FFFFFF"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="431" y="17" width="122" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Referencia]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Transparent" x="431" y="37" width="122" height="20" forecolor="#FF3333" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{id}]]></textFieldExpression>
+			</textField>
+			<image vAlign="Middle">
+				<reportElement x="0" y="0" width="109" height="73"/>
+				<imageExpression><![CDATA[$P{p_ruta_img}+"UJED_logo.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="422" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="0" width="572" height="421" forecolor="#FFFFFF" backcolor="#E2DBDB"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="15" y="10" width="553" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Descripción de Pago]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="461" y="361" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Monto]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="421" width="572" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="15" y="349" width="155" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[No. de recibo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="118" width="116" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[A nombre de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="381" width="155" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[No. de autorización:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="60" width="243" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Unidad Responsable]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="461" y="381" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PAGO_MONTOAPAGAR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="15" y="30" width="553" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PAGO_CONCEPTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="15" y="80" width="553" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{URES_DESCRIP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="15" y="138" width="557" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{USUA_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="15" y="173" width="557" height="138"/>
+				<subreportParameter name="id">
+					<subreportParameterExpression><![CDATA[$P{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR2} + "reciboDescuento_subreport.jasper"]]></subreportExpression>
+			</subreport>
+			<textField isBlankWhenNull="true">
+				<reportElement x="170" y="349" width="213" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{receipt}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="170" y="381" width="213" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{authorizationCode}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+</jasperReport>

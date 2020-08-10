@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "API_CONTEXT_ROOT",
+  "type": "java.lang.String",
+  "description": "A description for 'API_CONTEXT_ROOT'"
+}]}

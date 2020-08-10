@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pdfEjemplo_subreport2" pageWidth="555" pageHeight="555" orientation="Landscape" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+dpago_regid,
+dpago_folpago,
+dpago_idingreso,
+cati_descrip,
+dpago_cantidad,
+dpago_punit,
+dpago_descto
+from tdpagosonline,finanzas.fcating where dpago_idingreso= cati_ingid
+and dpago_folpago=$P{id}]]>
+	</queryString>
+	<field name="DPAGO_REGID" class="java.math.BigDecimal"/>
+	<field name="DPAGO_FOLPAGO" class="java.math.BigDecimal"/>
+	<field name="DPAGO_IDINGRESO" class="java.lang.String"/>
+	<field name="CATI_DESCRIP" class="java.lang.String"/>
+	<field name="DPAGO_CANTIDAD" class="java.math.BigDecimal"/>
+	<field name="DPAGO_PUNIT" class="java.math.BigDecimal"/>
+	<field name="DPAGO_DESCTO" class="java.math.BigDecimal"/>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="248" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONCEPTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="248" y="-1" width="68" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="326" y="0" width="102" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRECIO UNITARIO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="19" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="428" y="-1" width="127" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCUENTO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="248" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CATI_DESCRIP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="248" y="0" width="78" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DPAGO_CANTIDAD}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="326" y="0" width="102" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DPAGO_PUNIT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="428" y="0" width="127" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DPAGO_DESCTO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
