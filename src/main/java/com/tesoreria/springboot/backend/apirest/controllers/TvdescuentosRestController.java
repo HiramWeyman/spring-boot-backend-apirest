@@ -13,7 +13,8 @@ import com.tesoreria.springboot.backend.apirest.models.dao.ITvdescuentosDao;
 import com.tesoreria.springboot.backend.apirest.models.entity.Tvdescuentos;
 
 
-@CrossOrigin(origins = { "http://localhost:4200", "http://192.168.1.190:8080" })
+//@CrossOrigin(origins = { "http://localhost:4200", "http://192.168.1.190:8080" })
+@CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api")
 public class TvdescuentosRestController {
@@ -30,12 +31,6 @@ public class TvdescuentosRestController {
 	//@GetMapping(path = "/tvdescuentos/{vdes_ures}/{vdes_matricula}")
 	public List<Tvdescuentos> show(@PathVariable String vdes_ures,@PathVariable String vdes_matricula) {
 		return tvdescuentosDao.findDistinctByNameNotIn(vdes_ures, vdes_matricula);
-	}
-	
-	@GetMapping("/tvdescuentosdet/{vdes_ures}/{vdes_matricula}")
-	//@GetMapping(path = "/tvdescuentos/{vdes_ures}/{vdes_matricula}")
-	public List<Tvdescuentos> showdet(@PathVariable String vdes_ures,@PathVariable String vdes_matricula) {
-		return tvdescuentosDao.FindDescuentodet(vdes_ures, vdes_matricula);
 	}
 	
 }

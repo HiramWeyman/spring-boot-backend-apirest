@@ -9,26 +9,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tesoreria.springboot.backend.apirest.models.entity.SideBar;
-import com.tesoreria.springboot.backend.apirest.models.services.ISidebarService;
+import com.tesoreria.springboot.backend.apirest.models.dao.ITvdesctodetalleDao;
+import com.tesoreria.springboot.backend.apirest.models.entity.Tvdesctodetalle;
 
-//@CrossOrigin(origins = { "http://localhost:4200", "http://192.168.1.190:8080" })
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api")
-public class SideBarRestController {
-	
-	@Autowired
-	private ISidebarService sidebarService;	
-	
-	@GetMapping("/rolsusuario")
-	public List<SideBar> index() {
-		return sidebarService.findAll();
-	}
-	
-	@GetMapping("/rolsusuario/{rolu_tipo_user}")
-	public List<SideBar> show(@PathVariable String rolu_tipo_user)  {
-		return sidebarService.findRol(rolu_tipo_user);
-	}
+public class TvdesctodetalleRestController {
 
+	@Autowired
+	private ITvdesctodetalleDao tvdesctodetalleDao;
+	
+	@GetMapping("/tvdescuentosdet/{vdes_ures}/{vdes_matricula}")
+	//@GetMapping(path = "/tvdescuentos/{vdes_ures}/{vdes_matricula}")
+	public List<Tvdesctodetalle> showdet(@PathVariable String vdes_ures,@PathVariable String vdes_matricula) {
+		return tvdesctodetalleDao.FindDescuentodet(vdes_ures, vdes_matricula);
+	}
 }
