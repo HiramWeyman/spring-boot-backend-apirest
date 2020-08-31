@@ -16,6 +16,6 @@ public interface ITusuariosDao extends CrudRepository<Tusuarios, String>{
 	  List<Tusuarios> FindUsuario(String usua_usuario, String usua_paswd);
 	 
 	 @Query(value="select * from tusuarios where usua_usuario =?1", nativeQuery = true)
-	  List<Tusuarios> FindUsuarioName(String usua_usuario);
+	  Tusuarios FindUsuarioName(String usua_usuario);
 
 }

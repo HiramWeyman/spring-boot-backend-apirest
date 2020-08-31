@@ -33,6 +33,7 @@ public class FcatingRestController {
 		if (tipo_user.equals("30")){return IFcatingDao.CatalogoPagos30();}
 		if (tipo_user.equals("40")){return IFcatingDao.CatalogoPagos40();}
 		if (tipo_user.equals("50")){return IFcatingDao.CatalogoPagos50();}
+		if (tipo_user.equals("80")){return IFcatingDao.CatalogoPagos80();}
 
 		return null;
 	}

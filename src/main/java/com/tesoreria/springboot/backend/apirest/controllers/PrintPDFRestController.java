@@ -90,7 +90,7 @@ public class PrintPDFRestController {
 		
 		//final String invoice_template = "../pdfEjemplo.jrxml";
 	    //Invoice invoice = invoiceRepo.getOne(id);
-		System.out.println("ruta"+contextRoot);
+		//System.out.println("ruta"+contextRoot);
 		Connection conn = null;
 		try {
             Class.forName("oracle.jdbc.OracleDriver");
@@ -197,7 +197,7 @@ public class PrintPDFRestController {
 		
 		//final String invoice_template = "../pdfEjemplo.jrxml";
 	    //Invoice invoice = invoiceRepo.getOne(id);
-		System.out.println("ruta"+contextRoot);
+		//System.out.println("ruta"+contextRoot);
 		Connection conn = null;
 		try {
             Class.forName("oracle.jdbc.OracleDriver");

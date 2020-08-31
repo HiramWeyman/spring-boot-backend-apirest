@@ -33,8 +33,13 @@ public class TusuariosServiceImpl implements ITusuariosService{
 	}
 
 	@Override
-	public List<Tusuarios> findUsuarioName(String usua_usuario) {
-		return (List<Tusuarios>) tusuariosDao.FindUsuarioName(usua_usuario);
+	public Tusuarios findUsuarioName(String usua_usuario) {
+		return tusuariosDao.FindUsuarioName(usua_usuario);
+	}
+
+	@Override
+	public void save(List<Tusuarios> currentTusuarios) {
+		tusuariosDao.saveAll(currentTusuarios);
 	}
 
 }

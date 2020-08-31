@@ -10,8 +10,10 @@ public interface ITusuariosService {
 	
 	public List<Tusuarios> findUsuario(String usua_usuario, String usua_paswd);
 	
-	public List<Tusuarios> findUsuarioName(String usua_usuario);
+	public Tusuarios findUsuarioName(String usua_usuario);
 	
 	public void save(Tusuarios usuarios);
+
+	public void save(List<Tusuarios> currentTusuarios);
 
 }

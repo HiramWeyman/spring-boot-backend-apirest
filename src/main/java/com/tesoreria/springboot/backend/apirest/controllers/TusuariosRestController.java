@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tesoreria.springboot.backend.apirest.models.dao.ITusuariosDao;
 import com.tesoreria.springboot.backend.apirest.models.entity.Tusuarios;
 import com.tesoreria.springboot.backend.apirest.models.services.ITusuariosService;
 
@@ -24,6 +25,9 @@ public class TusuariosRestController {
 	
 	@Autowired
 	private ITusuariosService tusuariosService;
+	
+	@Autowired
+	private ITusuariosDao tusuariosDao;
 
 	@GetMapping("/tusuarios")
 	public List<Tusuarios> index() {
@@ -41,7 +45,7 @@ public class TusuariosRestController {
 	
 	
 	@PostMapping("/tusuarios/{usua_usuario}")
-	public List<Tusuarios> show(@PathVariable String usua_usuario)  {
+	public Tusuarios show(@PathVariable String usua_usuario)  {
 		return tusuariosService.findUsuarioName(usua_usuario);
 	}
 	
@@ -55,6 +59,17 @@ public class TusuariosRestController {
 		tusuarios.setUsua_paswd(encodedString);
 	
 		this.tusuariosService.save(tusuarios);
+		return tusuarios;
+	}
+	
+	@PostMapping("/tusuariosPass/{usua_usuario}")
+	public Tusuarios create(@RequestBody Tusuarios tusuarios, @PathVariable String usua_usuario) {
+		Tusuarios currentTusuarios = this.tusuariosDao.FindUsuarioName(usua_usuario);
+
+		String encodedString = Base64.getEncoder().encodeToString(tusuarios.getUsua_paswd().getBytes());
+		((Tusuarios) currentTusuarios).setUsua_paswd(encodedString);
+	
+		this.tusuariosService.save(currentTusuarios);
 		return tusuarios;
 	}
 
