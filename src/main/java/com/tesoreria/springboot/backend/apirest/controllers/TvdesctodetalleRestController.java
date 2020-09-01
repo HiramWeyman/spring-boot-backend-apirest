@@ -20,9 +20,17 @@ public class TvdesctodetalleRestController {
 	@Autowired
 	private ITvdesctodetalleDao tvdesctodetalleDao;
 	
+	/*
 	@GetMapping("/tvdescuentosdet/{vdes_ures}/{vdes_matricula}")
 	//@GetMapping(path = "/tvdescuentos/{vdes_ures}/{vdes_matricula}")
 	public List<Tvdesctodetalle> showdet(@PathVariable String vdes_ures,@PathVariable String vdes_matricula) {
 		return tvdesctodetalleDao.FindDescuentodet(vdes_ures, vdes_matricula);
+	}
+	*/
+	
+	@GetMapping("/tvdescuentosdet/{vdes_foldescto}")
+	//@GetMapping(path = "/tvdescuentos/{vdes_ures}/{vdes_matricula}")
+	public List<Tvdesctodetalle> showdet(@PathVariable String vdes_foldescto) {
+		return tvdesctodetalleDao.FindDescuentodet(vdes_foldescto);
 	}
 }
