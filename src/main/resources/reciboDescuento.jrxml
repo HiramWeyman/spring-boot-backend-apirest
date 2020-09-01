@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Recibo" pageWidth="612" pageHeight="600" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.2100000000000004"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="210"/>
+	<property name="ireport.y" value="220"/>
 	<parameter name="id" class="java.lang.String"/>
 	<parameter name="p_ruta_img" class="java.lang.String"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
@@ -12,24 +12,9 @@
 	<parameter name="receipt" class="java.lang.String"/>
 	<parameter name="authorizationCode" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select
-pago_folpago,
-pago_usuaid,
-pago_concepto,
-pago_foldescto,
-pago_montoapagar,
-pago_referencia,
-pago_fpago,
-pago_banco,
-pago_cnta_bancaria,
-pago_user,
-pago_fautoriza,
-pago_uautoriza,
-pago_polcont,
-pago_polpres,
-pago_estatus,
-usua_nombre,
-ures_descrip
+		<![CDATA[select pago_folpago, pago_usuaid, pago_concepto, pago_foldescto, pago_montoapagar,
+pago_referencia, pago_fpago, pago_banco, pago_cnta_bancaria, pago_user, pago_fautoriza,
+pago_uautoriza, pago_polcont, pago_polpres, pago_estatus, usua_nombre, ures_descrip,usua_persona
 from tesoportal.tpagosonline,tesoportal.tusuarios,finanzas.fures  where pago_usuaid= usua_usuario
 and usua_ures=ures_ures
 and pago_folpago = $P{id}
@@ -52,8 +37,9 @@ and pago_estatus = 'A']]>
 	<field name="PAGO_ESTATUS" class="java.lang.String"/>
 	<field name="USUA_NOMBRE" class="java.lang.String"/>
 	<field name="URES_DESCRIP" class="java.lang.String"/>
+	<field name="USUA_PERSONA" class="java.lang.String"/>
 	<pageHeader>
-		<band height="117" splitType="Stretch">
+		<band height="96" splitType="Stretch">
 			<staticText>
 				<reportElement x="107" y="37" width="309" height="36"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -92,7 +78,7 @@ and pago_estatus = 'A']]>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="422" splitType="Stretch">
+		<band height="450" splitType="Stretch">
 			<rectangle>
 				<reportElement mode="Opaque" x="0" y="0" width="572" height="421" forecolor="#FFFFFF" backcolor="#E2DBDB"/>
 			</rectangle>
@@ -166,7 +152,7 @@ and pago_estatus = 'A']]>
 			<textField>
 				<reportElement x="15" y="138" width="557" height="20"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{USUA_NOMBRE}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{USUA_NOMBRE}+" ("+$F{USUA_PERSONA}+")"]]></textFieldExpression>
 			</textField>
 			<subreport>
 				<reportElement x="15" y="173" width="557" height="138"/>
@@ -186,6 +172,18 @@ and pago_estatus = 'A']]>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$P{authorizationCode}]]></textFieldExpression>
 			</textField>
+			<textField pattern="dd/MM/yyyy h.mm a" isBlankWhenNull="true">
+				<reportElement x="94" y="430" width="265" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{PAGO_FPAGO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="430" width="94" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de pago:]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 </jasperReport>

@@ -12,13 +12,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.tesoreria.springboot.backend.apirest.models.dao.ITusuariosDao;
 import com.tesoreria.springboot.backend.apirest.models.entity.Tusuarios;
 import com.tesoreria.springboot.backend.apirest.models.services.ITusuariosService;
 
 //@CrossOrigin(origins = { "http://localhost:4200", "http://192.168.1.190:8080" })
-@CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
+@CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600, methods= {RequestMethod.GET,RequestMethod.POST})
 @RestController
 @RequestMapping("/api")
 public class TusuariosRestController {
@@ -36,7 +37,7 @@ public class TusuariosRestController {
 	
 	
 	//@PostMapping("/tusuarios/{usua_usuario}/{usua_paswd}")
-	@PostMapping(path = "/tusuarios/{usua_usuario}/{usua_paswd}", consumes = "application/json", produces = "application/json")
+	@PostMapping(path = "/tusuarios/{usua_usuario}/{usua_paswd:.+}", consumes = "application/json", produces = "application/json")
 	public List<Tusuarios> show(@PathVariable String usua_usuario,@PathVariable String usua_paswd)  {
 		
 		String encodedString = Base64.getEncoder().encodeToString(usua_paswd.getBytes());
