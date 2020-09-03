@@ -24,7 +24,11 @@ public interface IFcatingDao extends CrudRepository<Fcating, String>{
 	@Query(value="select * from finanzas.fcating where cati_publico='S' and cati_fbaja is null order by cati_descrip", nativeQuery = true)
 	  List<Fcating> CatalogoPagos50();
 	
-	@Query(value="select * from finanzas.fcating where cati_fbaja is null order by cati_descrip", nativeQuery = true)
+	@Query(value="select * " + 
+			" from finanzas.fcating " + 
+			" where cati_fbaja is null " + 
+			" and (cati_alumnos='S' or cati_personal='S' or cati_ures='S' or cati_incorporadas='S' or cati_publico='S') " + 
+			" order by cati_descrip", nativeQuery = true)
 	  List<Fcating> CatalogoPagos80();
 
 }
