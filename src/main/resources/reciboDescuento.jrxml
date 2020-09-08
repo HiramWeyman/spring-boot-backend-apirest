@@ -15,13 +15,14 @@
 		<![CDATA[select pago_folpago, pago_usuaid, pago_concepto, pago_foldescto, pago_montoapagar,
 pago_referencia, pago_fpago, pago_banco, pago_cnta_bancaria, pago_user, pago_fautoriza,
 pago_uautoriza, pago_polcont, pago_polpres, pago_estatus, usua_nombre, ures_descrip,usua_persona
-from tesoportal.tpagosonline,tesoportal.tusuarios,finanzas.fures  where pago_usuaid= usua_usuario
+from tesoportal.tpagosonline,tesoportal.tusuarios,finanzas.fures
+where pago_usuaid = usua_id
 and usua_ures=ures_ures
 and pago_folpago = $P{id}
 and pago_estatus = 'A']]>
 	</queryString>
 	<field name="PAGO_FOLPAGO" class="java.math.BigDecimal"/>
-	<field name="PAGO_USUAID" class="java.lang.String"/>
+	<field name="PAGO_USUAID" class="java.math.BigDecimal"/>
 	<field name="PAGO_CONCEPTO" class="java.lang.String"/>
 	<field name="PAGO_FOLDESCTO" class="java.math.BigDecimal"/>
 	<field name="PAGO_MONTOAPAGAR" class="java.math.BigDecimal"/>

@@ -20,7 +20,23 @@ public class Tdpagosonline {
 	private int dpago_cantidad;
 	private double dpago_punit;
 	private double dpago_descto;
+	private double dpago_dto_pagar;
+	private String dpago_regid_descto;
 	
+	
+	
+	public String getDpago_regid_descto() {
+		return dpago_regid_descto;
+	}
+	public void setDpago_regid_descto(String dpago_regid_descto) {
+		this.dpago_regid_descto = dpago_regid_descto;
+	}
+	public double getDpago_dto_pagar() {
+		return dpago_dto_pagar;
+	}
+	public void setDpago_dto_pagar(double dpago_dto_pagar) {
+		this.dpago_dto_pagar = dpago_dto_pagar;
+	}
 	public Long getDpago_regid() {
 		return dpago_regid;
 	}

@@ -39,10 +39,12 @@ public class TdpagosonlineRestController {
 	public void create(String folio,@RequestParam(value="det") String[] det){
 		int folio_det=Integer.parseInt(folio);
 		String id_ingreso="";
+		String vdes_regid=null;
 		String desc="";
 		int cant=0;
 		double p_unit=0.00;
 		double descto=0.00;
+		double dtopagar=0.00;
 		String[] parts;
 		
 		ArrayList<Tdpagosonline> lista = new ArrayList<Tdpagosonline>();
@@ -59,15 +61,20 @@ public class TdpagosonlineRestController {
 		    cant=Integer.parseInt(parts[2]);
 		    p_unit=Double.parseDouble(parts[3]);
 		    
-		    
 		    dpago_det.setDpago_folpago(folio_det);
 		    dpago_det.setDpago_idingreso(id_ingreso);
 		    dpago_det.setDpago_cantidad(cant);
 		    dpago_det.setDpago_punit(p_unit);
-
+		    dpago_det.setDpago_regid_descto(null);
+		    
 		    if (!parts[4].equals("null")) {
-		    	descto=Double.parseDouble(parts[4]);
+		    	vdes_regid=parts[4];
+		    	descto=Double.parseDouble(parts[5]);
+		    	dtopagar=Double.parseDouble(parts[6]);
+		    	
+		    	dpago_det.setDpago_regid_descto(vdes_regid);
 		    	dpago_det.setDpago_descto(descto);
+		    	dpago_det.setDpago_dto_pagar(dtopagar);
 		    }
 
 		    

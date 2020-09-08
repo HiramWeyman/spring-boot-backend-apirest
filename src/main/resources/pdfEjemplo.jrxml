@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Recibo" pageWidth="612" pageHeight="600" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.2100000000000004"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="210"/>
+	<property name="ireport.y" value="211"/>
 	<parameter name="id" class="java.lang.String"/>
 	<parameter name="p_ruta_img" class="java.lang.String"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
@@ -12,31 +12,17 @@
 	<parameter name="receipt" class="java.lang.String"/>
 	<parameter name="authorizationCode" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select
-pago_folpago,
-pago_usuaid,
-pago_concepto,
-pago_foldescto,
-pago_montoapagar,
-pago_referencia,
-pago_fpago,
-pago_banco,
-pago_cnta_bancaria,
-pago_user,
-pago_fautoriza,
-pago_uautoriza,
-pago_polcont,
-pago_polpres,
-pago_estatus,
-usua_nombre,
-ures_descrip
-from tesoportal.tpagosonline,tesoportal.tusuarios,finanzas.fures  where pago_usuaid= usua_usuario
+		<![CDATA[select pago_folpago, pago_usuaid, pago_concepto, pago_foldescto, pago_montoapagar,
+pago_referencia, pago_fpago, pago_banco, pago_cnta_bancaria, pago_user, pago_fautoriza,
+pago_uautoriza, pago_polcont, pago_polpres, pago_estatus, usua_nombre, ures_descrip
+from tesoportal.tpagosonline,tesoportal.tusuarios,finanzas.fures
+where pago_usuaid = usua_id
 and usua_ures=ures_ures
 and pago_folpago = $P{id}
 and pago_estatus = 'A']]>
 	</queryString>
 	<field name="PAGO_FOLPAGO" class="java.math.BigDecimal"/>
-	<field name="PAGO_USUAID" class="java.lang.String"/>
+	<field name="PAGO_USUAID" class="java.math.BigDecimal"/>
 	<field name="PAGO_CONCEPTO" class="java.lang.String"/>
 	<field name="PAGO_FOLDESCTO" class="java.math.BigDecimal"/>
 	<field name="PAGO_MONTOAPAGAR" class="java.math.BigDecimal"/>

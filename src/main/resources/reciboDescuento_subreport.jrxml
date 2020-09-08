@@ -12,7 +12,8 @@ dpago_idingreso,
 cati_descrip,
 dpago_cantidad,
 dpago_punit,
-dpago_descto
+dpago_descto,
+dpago_dto_pagar
 from tdpagosonline,finanzas.fcating where dpago_idingreso= cati_ingid
 and dpago_folpago=$P{id}]]>
 	</queryString>
@@ -23,62 +24,77 @@ and dpago_folpago=$P{id}]]>
 	<field name="DPAGO_CANTIDAD" class="java.math.BigDecimal"/>
 	<field name="DPAGO_PUNIT" class="java.math.BigDecimal"/>
 	<field name="DPAGO_DESCTO" class="java.math.BigDecimal"/>
+	<field name="DPAGO_DTO_PAGAR" class="java.math.BigDecimal"/>
 	<columnHeader>
 		<band height="23" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="248" height="20"/>
+				<reportElement x="0" y="-1" width="260" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[CONCEPTO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="248" y="-1" width="68" height="20"/>
+				<reportElement x="260" y="-1" width="48" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[CANTIDAD]]></text>
+				<text><![CDATA[CANT.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="326" y="0" width="102" height="20"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<reportElement x="321" y="-1" width="81" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[PRECIO UNITARIO]]></text>
+				<text><![CDATA[P. UNITARIO]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="19" width="555" height="1"/>
 			</line>
 			<staticText>
-				<reportElement x="428" y="-1" width="127" height="20"/>
+				<reportElement x="415" y="-1" width="43" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="468" y="0" width="87" height="19"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[DESCUENTO]]></text>
+				<text><![CDATA[Total]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="21" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="248" height="20"/>
+				<reportElement x="0" y="0" width="260" height="20"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{CATI_DESCRIP}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="248" y="0" width="78" height="20"/>
+				<reportElement x="260" y="0" width="48" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{DPAGO_CANTIDAD}]]></textFieldExpression>
 			</textField>
 			<textField pattern="¤ #,##0.00">
-				<reportElement x="326" y="0" width="102" height="20"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<reportElement x="321" y="0" width="81" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{DPAGO_PUNIT}]]></textFieldExpression>
 			</textField>
-			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
-				<reportElement x="428" y="0" width="127" height="20"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{DPAGO_DESCTO}]]></textFieldExpression>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="415" y="0" width="43" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DPAGO_DESCTO}+"%"]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="468" y="1" width="87" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DPAGO_DTO_PAGAR}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
