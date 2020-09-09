@@ -55,7 +55,7 @@ public class TdpagosonlineRestController {
 			//imprimimos el objeto pivote
 		    //System.out.println("value: "+str);
 		    Tdpagosonline dpago_det=new Tdpagosonline();
-		    parts=str.split("-");
+		    parts=str.split("_");
 		    id_ingreso = parts[0]; 
 		    desc= parts[1];
 		    cant=Integer.parseInt(parts[2]);
