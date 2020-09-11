@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pdfEjemplo_subreport2" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pdfEjemplo_subreport2" pageWidth="555" pageHeight="555" orientation="Landscape" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -24,7 +24,7 @@ and dpago_folpago=$P{id}]]>
 	<field name="DPAGO_PUNIT" class="java.math.BigDecimal"/>
 	<field name="DPAGO_DESCTO" class="java.math.BigDecimal"/>
 	<columnHeader>
-		<band height="20" splitType="Stretch">
+		<band height="23" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="286" height="20"/>
 				<textElement verticalAlignment="Middle">
@@ -33,37 +33,55 @@ and dpago_folpago=$P{id}]]>
 				<text><![CDATA[CONCEPTO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="286" y="0" width="100" height="20"/>
+				<reportElement x="286" y="0" width="76" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[CANTIDAD]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="386" y="0" width="150" height="20"/>
+				<reportElement x="386" y="0" width="76" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[PRECIO UNITARIO]]></text>
+				<text><![CDATA[P. UNITARIO]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="479" y="0" width="76" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[IMPORTE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="20" width="555" height="1"/>
+			</line>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="1" width="555" height="20" forecolor="#FFFFFF" backcolor="#E2DBDB"/>
+			</rectangle>
 			<textField>
 				<reportElement x="0" y="0" width="286" height="20"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{CATI_DESCRIP}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="286" y="0" width="100" height="20"/>
+				<reportElement x="286" y="0" width="76" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{DPAGO_CANTIDAD}]]></textFieldExpression>
 			</textField>
 			<textField pattern="¤ #,##0.00">
-				<reportElement x="386" y="0" width="150" height="20"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<reportElement x="386" y="0" width="76" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{DPAGO_PUNIT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="479" y="1" width="76" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DPAGO_CANTIDAD}.multiply( $F{DPAGO_PUNIT} )]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

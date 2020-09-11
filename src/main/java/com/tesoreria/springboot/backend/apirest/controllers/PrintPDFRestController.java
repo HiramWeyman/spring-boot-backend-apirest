@@ -21,6 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,15 +44,16 @@ public class PrintPDFRestController {
 	private String contextRoot;
 	
 	@GetMapping(value = "/print/{id}/{ref_banco}")
-	public void report(HttpServletResponse response, @PathVariable("id") String id,@PathVariable("ref_banco") String ref_banco) throws Exception {
+	public ResponseEntity<String> report(HttpServletResponse response, @PathVariable("id") String id,@PathVariable("ref_banco") String ref_banco) throws Exception {
+		Integer bandera = 0;
 		
 		//String Url = "https://evopaymentsmexico.gateway.mastercard.com/api/rest/version/52/merchant/TEST2017ECOMM1/order/"+ref_banco+"";
-		String Url = "https://evopaymentsmexico.gateway.mastercard.com/api/rest/version/52/merchant/TEST1125660/order/"+ref_banco+"";
+		String Url = "https://evopaymentsmexico.gateway.mastercard.com/api/rest/version/52/merchant/TEST1143891/order/"+ref_banco+"";
 		//String Url = "https://evopaymentsmexico.gateway.mastercard.com/api/rest/version/52/merchant/1125660/order/"+ref_banco+"";
 		URL url = new URL(Url);
 		URLConnection uc = url.openConnection();
 		//String userpass = "merchant.TEST2017ECOMM1" + ":" + "ac50e16a0c295b971ed55b0086ad0262";
-		String userpass = "merchant.TEST1125660" + ":" + "65cb98f2f8df3930064103df1784935c";
+		String userpass = "merchant.TEST1143891" + ":" + "2d6535bb8bff89759b283e56823a8ad5";
 		//String userpass = "merchant.1125660" + ":" + "7e0e81526f5b1c95195e4be42e54cbb9";
 		String basicAuth = "Basic " + new String(Base64.getEncoder().encode(userpass.getBytes()));
 		uc.setRequestProperty ("Authorization", basicAuth);
@@ -132,7 +134,7 @@ public class PrintPDFRestController {
 		out.write (fichero, 0, fichero.length);
 		out.flush ();
 		out.close (); 
-		
+		bandera = 1;
 		} catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -146,6 +148,12 @@ public class PrintPDFRestController {
             	expSQL.printStackTrace();
             }
         }
+		
+		if(bandera.equals(1)) {
+			return ResponseEntity.ok().build();
+		}else {
+			return ResponseEntity.badRequest().build();
+		}
 	}
 	
 	//////REPORTE DE DESCUENTOS
@@ -153,12 +161,12 @@ public class PrintPDFRestController {
 	public void reportDesc(HttpServletResponse response, @PathVariable("id") String id,@PathVariable("ref_banco") String ref_banco) throws Exception {
 		
 		//String Url = "https://evopaymentsmexico.gateway.mastercard.com/api/rest/version/52/merchant/TEST2017ECOMM1/order/"+ref_banco+"";
-		String Url = "https://evopaymentsmexico.gateway.mastercard.com/api/rest/version/52/merchant/TEST1125660/order/"+ref_banco+"";
+		String Url = "https://evopaymentsmexico.gateway.mastercard.com/api/rest/version/52/merchant/TEST1143891/order/"+ref_banco+"";
 		//String Url = "https://evopaymentsmexico.gateway.mastercard.com/api/rest/version/52/merchant/1125660/order/"+ref_banco+"";
 		URL url = new URL(Url);
 		URLConnection uc = url.openConnection();
 		//String userpass = "merchant.TEST2017ECOMM1" + ":" + "ac50e16a0c295b971ed55b0086ad0262";
-		String userpass = "merchant.TEST1125660" + ":" + "65cb98f2f8df3930064103df1784935c";
+		String userpass = "merchant.TEST1143891" + ":" + "2d6535bb8bff89759b283e56823a8ad5";
 		//String userpass = "merchant.1125660" + ":" + "7e0e81526f5b1c95195e4be42e54cbb9";
 		String basicAuth = "Basic " + new String(Base64.getEncoder().encode(userpass.getBytes()));
 		uc.setRequestProperty ("Authorization", basicAuth);

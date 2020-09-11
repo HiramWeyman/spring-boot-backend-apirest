@@ -9,7 +9,7 @@ import com.tesoreria.springboot.backend.apirest.models.entity.Ttipouser;
 
 public interface ITtipouserDao extends CrudRepository<Ttipouser, Long>{
 	
-	 @Query(value="select * from ttipouser where tipo_userid not in ('60','70') order by tipo_descrip", nativeQuery = true)
+	 @Query(value="select * from ttipouser where tipo_userid not in ('60','70','80') order by tipo_descrip", nativeQuery = true)
 	  List<Ttipouser> FindTtipousers();
 	 
 	 @Query(value="select * from ttipouser where tipo_userid not in ('60','70') and tipo_userid = ?1 order by tipo_descrip", nativeQuery = true)
