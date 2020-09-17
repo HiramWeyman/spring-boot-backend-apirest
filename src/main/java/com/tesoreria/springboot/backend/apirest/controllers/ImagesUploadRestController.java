@@ -34,9 +34,9 @@ import com.jcraft.jsch.SftpException;
 @RequestMapping("/api")
 public class ImagesUploadRestController {
 	
-	@PostMapping("/uploadFile/{id}")
+	@PostMapping("/uploadFile/{id}/{table}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<String> uploadFile(@PathVariable String id, @RequestBody MultipartFile file) throws JSchException, IOException, SQLException {
+	public ResponseEntity<String> uploadFile(@PathVariable String id, @PathVariable String table, @RequestBody MultipartFile file) throws JSchException, IOException, SQLException {
 		Connection conn = null;
 		String sequence = null;
 		ResultSet rs = null;
@@ -118,7 +118,17 @@ public class ImagesUploadRestController {
 				   inputStream.close();
 				   
 				   conn.setAutoCommit(false);
-				   String update = "update tesoportal.tnoticias set tnot_ruta_img = '"+rutaImagenes+"/"+file.getOriginalFilename()+"' where tnot_id = '"+id+"'";
+				   String update ="";
+				   if(table.equals("tnoticias")) {
+					   update = "update tesoportal.tnoticias set tnot_ruta_img = '"+rutaImagenes+"/"+file.getOriginalFilename()+"' where tnot_id = '"+id+"'";
+				   }
+				   if(table.equals("tbanners")) {
+					   update = "update tesoportal.tbanners set tban_ruta_img = '"+rutaImagenes+"/"+file.getOriginalFilename()+"' where tban_id = '"+id+"'";
+				   }
+				   if(table.equals("tequipo")) {
+					   update = "update tesoportal.tequipo set teq_ruta_img = '"+rutaImagenes+"/"+file.getOriginalFilename()+"' where teq_id = '"+id+"'";
+				   }
+				   
 				   Statement stmt2 = conn.createStatement();
 				   stmt2.executeUpdate(update);
 				   conn.commit();
@@ -144,6 +154,7 @@ public class ImagesUploadRestController {
 		
     }
 	
+	/*
 	@PostMapping("/uploadBanner/{id}/{ban}")
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<String> uploadFile(@PathVariable String id, @PathVariable String ban, @RequestBody MultipartFile file) throws JSchException, IOException, SQLException {
@@ -253,5 +264,5 @@ public class ImagesUploadRestController {
 		}
 		
     }
-
+	 */
 }
