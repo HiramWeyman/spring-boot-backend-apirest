@@ -128,6 +128,9 @@ public class ImagesUploadRestController {
 				   if(table.equals("tequipo")) {
 					   update = "update tesoportal.tequipo set teq_ruta_img = '"+rutaImagenes+"/"+file.getOriginalFilename()+"' where teq_id = '"+id+"'";
 				   }
+				   if(table.equals("tservicios")) {
+					   update = "update tesoportal.tservicios set teq_ruta_img = '"+rutaImagenes+"/"+file.getOriginalFilename()+"' where tser_id = '"+id+"'";
+				   }
 				   
 				   Statement stmt2 = conn.createStatement();
 				   stmt2.executeUpdate(update);

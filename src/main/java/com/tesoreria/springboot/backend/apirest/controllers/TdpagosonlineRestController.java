@@ -40,7 +40,7 @@ public class TdpagosonlineRestController {
 		int folio_det=Integer.parseInt(folio);
 		String id_ingreso="";
 		String vdes_regid=null;
-		String desc="";
+		//String desc="";
 		int cant=0;
 		double p_unit=0.00;
 		double descto=0.00;
@@ -57,9 +57,9 @@ public class TdpagosonlineRestController {
 		    Tdpagosonline dpago_det=new Tdpagosonline();
 		    parts=str.split("_");
 		    id_ingreso = parts[0]; 
-		    desc= parts[1];
-		    cant=Integer.parseInt(parts[2]);
-		    p_unit=Double.parseDouble(parts[3]);
+		    //desc= parts[1];
+		    cant=Integer.parseInt(parts[1]);
+		    p_unit=Double.parseDouble(parts[2]);
 		    
 		    dpago_det.setDpago_folpago(folio_det);
 		    dpago_det.setDpago_idingreso(id_ingreso);
@@ -67,10 +67,10 @@ public class TdpagosonlineRestController {
 		    dpago_det.setDpago_punit(p_unit);
 		    dpago_det.setDpago_regid_descto(null);
 		    
-		    if (!parts[4].equals("null")) {
-		    	vdes_regid=parts[4];
-		    	descto=Double.parseDouble(parts[5]);
-		    	dtopagar=Double.parseDouble(parts[6]);
+		    if (!parts[3].equals("null")) {
+		    	vdes_regid=parts[3];
+		    	descto=Double.parseDouble(parts[4]);
+		    	dtopagar=Double.parseDouble(parts[5]);
 		    	
 		    	dpago_det.setDpago_regid_descto(vdes_regid);
 		    	dpago_det.setDpago_descto(descto);

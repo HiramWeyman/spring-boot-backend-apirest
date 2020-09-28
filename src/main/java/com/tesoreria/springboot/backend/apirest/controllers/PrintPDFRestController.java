@@ -49,12 +49,12 @@ public class PrintPDFRestController {
 		
 		//String Url = "https://evopaymentsmexico.gateway.mastercard.com/api/rest/version/52/merchant/TEST2017ECOMM1/order/"+ref_banco+"";
 		String Url = "https://evopaymentsmexico.gateway.mastercard.com/api/rest/version/52/merchant/TEST1143891/order/"+ref_banco+"";
-		//String Url = "https://evopaymentsmexico.gateway.mastercard.com/api/rest/version/52/merchant/1125660/order/"+ref_banco+"";
+		//String Url = "https://evopaymentsmexico.gateway.mastercard.com/api/rest/version/52/merchant/1143891/order/"+ref_banco+"";
 		URL url = new URL(Url);
 		URLConnection uc = url.openConnection();
 		//String userpass = "merchant.TEST2017ECOMM1" + ":" + "ac50e16a0c295b971ed55b0086ad0262";
 		String userpass = "merchant.TEST1143891" + ":" + "2d6535bb8bff89759b283e56823a8ad5";
-		//String userpass = "merchant.1125660" + ":" + "7e0e81526f5b1c95195e4be42e54cbb9";
+		//String userpass = "merchant.1143891" + ":" + "8d56e8d4b2753f1ac9286a70ec23f779";
 		String basicAuth = "Basic " + new String(Base64.getEncoder().encode(userpass.getBytes()));
 		uc.setRequestProperty ("Authorization", basicAuth);
 		
@@ -162,12 +162,12 @@ public class PrintPDFRestController {
 		
 		//String Url = "https://evopaymentsmexico.gateway.mastercard.com/api/rest/version/52/merchant/TEST2017ECOMM1/order/"+ref_banco+"";
 		String Url = "https://evopaymentsmexico.gateway.mastercard.com/api/rest/version/52/merchant/TEST1143891/order/"+ref_banco+"";
-		//String Url = "https://evopaymentsmexico.gateway.mastercard.com/api/rest/version/52/merchant/1125660/order/"+ref_banco+"";
+		//String Url = "https://evopaymentsmexico.gateway.mastercard.com/api/rest/version/52/merchant/1143891/order/"+ref_banco+"";
 		URL url = new URL(Url);
 		URLConnection uc = url.openConnection();
 		//String userpass = "merchant.TEST2017ECOMM1" + ":" + "ac50e16a0c295b971ed55b0086ad0262";
 		String userpass = "merchant.TEST1143891" + ":" + "2d6535bb8bff89759b283e56823a8ad5";
-		//String userpass = "merchant.1125660" + ":" + "7e0e81526f5b1c95195e4be42e54cbb9";
+		//String userpass = "merchant.1143891" + ":" + "8d56e8d4b2753f1ac9286a70ec23f779";
 		String basicAuth = "Basic " + new String(Base64.getEncoder().encode(userpass.getBytes()));
 		uc.setRequestProperty ("Authorization", basicAuth);
 		
