@@ -35,8 +35,8 @@ public class EvoRestController {
 		con.setRequestMethod("POST");
 		//String returnUrl ="/SOMEREFO2019/RespuestaBanco";
 		//String urlParameters = "apiOperation=CREATE_CHECKOUT_SESSION&apiPassword=ac50e16a0c295b971ed55b0086ad0262&apiUsername=merchant.TEST2017ECOMM1&merchant=TEST2017ECOMM1&order.id="+Usuario+"&order.amount="+Pago+"&order.currency=MXN";
-		String urlParameters = "apiOperation=CREATE_CHECKOUT_SESSION&apiPassword=2d6535bb8bff89759b283e56823a8ad5&apiUsername=merchant.TEST1143891&merchant=TEST1143891&order.id="+id_user+"&order.amount="+amount+"&order.currency=MXN";
-		//String urlParameters = "apiOperation=CREATE_CHECKOUT_SESSION&apiPassword=8d56e8d4b2753f1ac9286a70ec23f779&apiUsername=merchant.1143891&merchant=1143891&order.id="+id_user+"&order.amount="+amount+"&order.currency=MXN";
+		//String urlParameters = "apiOperation=CREATE_CHECKOUT_SESSION&apiPassword=2d6535bb8bff89759b283e56823a8ad5&apiUsername=merchant.TEST1143891&merchant=TEST1143891&order.id="+id_user+"&order.amount="+amount+"&order.currency=MXN";
+		String urlParameters = "apiOperation=CREATE_CHECKOUT_SESSION&apiPassword=8d56e8d4b2753f1ac9286a70ec23f779&apiUsername=merchant.1143891&merchant=1143891&order.id="+id_user+"&order.amount="+amount+"&order.currency=MXN";
 		
 		// Send post request
 		con.setDoOutput(true);

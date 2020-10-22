@@ -69,6 +69,9 @@ and dpago_folpago=$P{id}]]>
 	</columnHeader>
 	<detail>
 		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="1" width="555" height="20" forecolor="#FFFFFF" backcolor="#E2DBDB"/>
+			</rectangle>
 			<textField>
 				<reportElement x="0" y="0" width="260" height="20"/>
 				<textElement verticalAlignment="Middle"/>

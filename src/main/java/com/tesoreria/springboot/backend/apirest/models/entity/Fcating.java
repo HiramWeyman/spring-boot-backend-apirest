@@ -11,7 +11,7 @@ public class Fcating {
 	@Id
 	private String cati_ingid;
 	
-	private String cati_punit;
+	private double cati_punit;
 	
 	private String cati_descrip;
 
@@ -23,11 +23,11 @@ public class Fcating {
 		this.cati_ingid = cati_ingid;
 	}
 
-	public String getCati_punit() {
+	public double getCati_punit() {
 		return cati_punit;
 	}
 
-	public void setCati_punit(String cati_punit) {
+	public void setCati_punit(double cati_punit) {
 		this.cati_punit = cati_punit;
 	}
 
