@@ -9,10 +9,10 @@ import com.tesoreria.springboot.backend.apirest.models.entity.Tvmaestropagos;
 
 public interface ITvmaestropagosDao extends CrudRepository<Tvmaestropagos, String>{
 	
-	@Query(value="select *from tvmaestropagos order by to_number(vmae_foliopago)", nativeQuery = true)
+	@Query(value="select *from tvmaestropagos order by to_number(vmae_foliopago) desc", nativeQuery = true)
 	  List<Tvmaestropagos> Pagos();
 	
-	@Query(value="select *from tvmaestropagos where vmae_foliopago =?1 order by to_number(vmae_foliopago)", nativeQuery = true)
+	@Query(value="select *from tvmaestropagos where vmae_foliopago =?1 order by to_number(vmae_foliopago) desc", nativeQuery = true)
 	  List<Tvmaestropagos> Pago(String vmae_foliopago);
 
 }

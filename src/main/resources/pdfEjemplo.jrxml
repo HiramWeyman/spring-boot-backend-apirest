@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Recibo" pageWidth="612" pageHeight="600" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.2100000000000004"/>
+	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="id" class="java.lang.String"/>
@@ -15,7 +15,7 @@
 		<![CDATA[select pago_folpago, pago_usuaid, pago_concepto, pago_foldescto, pago_montoapagar,
 pago_referencia, pago_fpago, pago_banco, pago_cnta_bancaria, pago_user, pago_fautoriza,
 pago_uautoriza, pago_polcont, pago_polpres, pago_estatus, usua_nombre, ures_descrip,
-usua_persona, prog_descrip,  tipo_descrip
+usua_persona, usua_usuario, prog_descrip,  tipo_descrip
 from tesoportal.tpagosonline, tesoportal.tusuarios, finanzas.fures, finanzas.fprogram, tesoportal.ttipouser
 where pago_usuaid = usua_id
 and usua_ures=ures_ures
@@ -42,10 +42,11 @@ and tipo_userid = usua_tipo_usuario]]>
 	<field name="USUA_NOMBRE" class="java.lang.String"/>
 	<field name="URES_DESCRIP" class="java.lang.String"/>
 	<field name="USUA_PERSONA" class="java.lang.String"/>
+	<field name="USUA_USUARIO" class="java.lang.String"/>
 	<field name="PROG_DESCRIP" class="java.lang.String"/>
 	<field name="TIPO_DESCRIP" class="java.lang.String"/>
 	<pageHeader>
-		<band height="111" splitType="Stretch">
+		<band height="103" splitType="Stretch">
 			<staticText>
 				<reportElement x="69" y="48" width="434" height="24"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -61,9 +62,9 @@ and tipo_userid = usua_tipo_usuario]]>
 				<text><![CDATA[Universidad Juarez del Estado de Durango]]></text>
 			</staticText>
 			<textField>
-				<reportElement mode="Transparent" x="279" y="72" width="224" height="24" forecolor="#FF3333" backcolor="#FFFFFF"/>
-				<textElement verticalAlignment="Middle">
-					<font isBold="true"/>
+				<reportElement mode="Transparent" x="199" y="72" width="78" height="29" forecolor="#FF0000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{id}]]></textFieldExpression>
 			</textField>
@@ -76,23 +77,44 @@ and tipo_userid = usua_tipo_usuario]]>
 				<imageExpression><![CDATA[$P{p_ruta_img}+"logoUJED.png"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="69" y="72" width="210" height="24"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Recibo de pago: ]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="69" y="24" width="434" height="24"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CONSTITUCIÓN 404 SUR, DURANGO, DGO. R.F.C. UJE570321-HB0]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="69" y="72" width="130" height="29"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recibo de pago: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="295" y="72" width="130" height="29"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N. Referencía: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Transparent" x="425" y="72" width="78" height="29" forecolor="#FF0000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PAGO_REFERENCIA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="277" y="72" width="18" height="29"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[/]]></text>
+			</staticText>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="132" splitType="Stretch">
+		<band height="107" splitType="Stretch">
 			<staticText>
 				<reportElement x="48" y="40" width="72" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
@@ -108,9 +130,10 @@ and tipo_userid = usua_tipo_usuario]]>
 				<textFieldExpression><![CDATA[$F{PAGO_CONCEPTO}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="123" y="65" width="449" height="20" backcolor="#CCCCCC"/>
+				<reportElement mode="Opaque" x="123" y="60" width="449" height="20" backcolor="#CCCCCC"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10"/>
+					<paragraph leftIndent="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{URES_DESCRIP}]]></textFieldExpression>
 			</textField>
@@ -118,25 +141,27 @@ and tipo_userid = usua_tipo_usuario]]>
 				<reportElement mode="Opaque" x="123" y="40" width="449" height="20" backcolor="#CCCCCC"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10"/>
+					<paragraph leftIndent="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{USUA_NOMBRE}+" ("+$F{USUA_PERSONA}+")"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="65" width="120" height="20"/>
+				<reportElement x="0" y="60" width="120" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="10" isBold="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Unidad Academica]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement mode="Opaque" x="123" y="90" width="449" height="20" backcolor="#CCCCCC"/>
+				<reportElement mode="Opaque" x="123" y="80" width="449" height="20" backcolor="#CCCCCC"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10"/>
+					<paragraph leftIndent="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{PROG_DESCRIP}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="3" y="90" width="120" height="20"/>
+				<reportElement x="3" y="80" width="120" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="10" isBold="true" isUnderline="false"/>
 				</textElement>
@@ -156,92 +181,92 @@ and tipo_userid = usua_tipo_usuario]]>
 			</subreport>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="144">
+	<pageFooter>
+		<band height="139">
 			<staticText>
-				<reportElement x="123" y="56" width="155" height="20" forecolor="#999999"/>
+				<reportElement x="124" y="52" width="140" height="20" forecolor="#999999"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9" isBold="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Num. Autorización]]></text>
 			</staticText>
 			<textField pattern="¤ #,##0.00">
-				<reportElement mode="Transparent" x="471" y="9" width="100" height="20" backcolor="#CCCCCC"/>
+				<reportElement mode="Transparent" x="472" y="5" width="100" height="20" backcolor="#CCCCCC"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{PAGO_MONTOAPAGAR}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="123" y="76" width="155" height="20" forecolor="#999999"/>
+				<reportElement x="124" y="72" width="140" height="20" forecolor="#999999"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{authorizationCode}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="281" y="56" width="155" height="20" forecolor="#999999"/>
+				<reportElement x="267" y="52" width="155" height="20" forecolor="#999999"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9" isBold="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Fecha de pago]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy h.mm a" isBlankWhenNull="true">
-				<reportElement x="281" y="76" width="155" height="20" forecolor="#999999"/>
+				<reportElement x="267" y="72" width="155" height="20" forecolor="#999999"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{PAGO_FPAGO}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="3" y="9" width="120" height="20"/>
+				<reportElement x="4" y="5" width="120" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[TOTAL A PAGAR:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="56" width="120" height="20" forecolor="#999999"/>
+				<reportElement x="1" y="52" width="120" height="20" forecolor="#999999"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9" isBold="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Num. Recibo]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="0" y="76" width="120" height="20" forecolor="#999999"/>
+				<reportElement x="1" y="72" width="120" height="20" forecolor="#999999"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{receipt}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="370" y="122" width="174" height="11"/>
+				<reportElement x="371" y="118" width="174" height="11"/>
 				<textElement textAlignment="Right">
 					<font size="8" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" / "]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="544" y="122" width="24" height="11"/>
+				<reportElement x="545" y="118" width="24" height="11"/>
 				<textElement textAlignment="Left">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="444" y="56" width="127" height="20" forecolor="#999999"/>
+				<reportElement x="425" y="52" width="145" height="20" forecolor="#999999"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9" isBold="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Usuario]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="444" y="76" width="128" height="20" forecolor="#999999"/>
+				<reportElement x="425" y="72" width="148" height="20" forecolor="#999999"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{TIPO_DESCRIP}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{USUA_USUARIO}]]></textFieldExpression>
 			</textField>
 		</band>
-	</columnFooter>
+	</pageFooter>
 </jasperReport>

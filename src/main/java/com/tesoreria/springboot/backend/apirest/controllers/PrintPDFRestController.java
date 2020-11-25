@@ -44,7 +44,8 @@ public class PrintPDFRestController {
 	private String contextRoot;
 	
 	@GetMapping(value = "/print/{id}/{ref_banco}")
-	public ResponseEntity<String> report(HttpServletResponse response, @PathVariable("id") String id,@PathVariable("ref_banco") String ref_banco) throws Exception {
+	public ResponseEntity<String> report(HttpServletResponse response, @PathVariable("id") String id,
+										@PathVariable("ref_banco") String ref_banco) throws Exception {
 		Integer bandera = 0;
 		
 		//String Url = "https://evopaymentsmexico.gateway.mastercard.com/api/rest/version/52/merchant/TEST2017ECOMM1/order/"+ref_banco+"";
