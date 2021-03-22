@@ -44,7 +44,7 @@ public class ImagesUploadRestController {
 		try {
             Class.forName("oracle.jdbc.OracleDriver");
         
-		conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.1.184:1527:sai2", "TESOPORTAL", "TP2020");
+		conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.1.184:1527:sai2", "TESOPORTAL", "TP1968");
         if (conn != null)
             System.out.println("Database Connected");
         else
