@@ -13,7 +13,6 @@ import com.tesoreria.springboot.backend.apirest.models.dao.ITvdescuentosDao;
 import com.tesoreria.springboot.backend.apirest.models.entity.Tvdescuentos;
 
 
-//@CrossOrigin(origins = { "http://localhost:4200", "http://192.168.1.190:8080" })
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api")
