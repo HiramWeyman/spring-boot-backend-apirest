@@ -17,7 +17,7 @@ import com.tesoreria.springboot.backend.apirest.models.dao.ITfaqsDao;
 import com.tesoreria.springboot.backend.apirest.models.entity.Tfaqs;
 import com.tesoreria.springboot.backend.apirest.models.services.ITfaqsService;
 
-//@CrossOrigin(origins = { "http://localhost:4200", "http://192.168.1.190:8080" })
+
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api")
