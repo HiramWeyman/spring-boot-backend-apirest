@@ -28,7 +28,6 @@ import com.jcraft.jsch.Session;
 import com.jcraft.jsch.SftpATTRS;
 import com.jcraft.jsch.SftpException;
 
-//@CrossOrigin(origins = { "http://localhost:4200", "http://192.168.1.190:8080" })
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api")
