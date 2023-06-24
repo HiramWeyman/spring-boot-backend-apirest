@@ -16,7 +16,7 @@ import com.tesoreria.springboot.backend.apirest.models.entity.Fcating;
 import com.tesoreria.springboot.backend.apirest.models.entity.Tdpagosonline;
 import com.tesoreria.springboot.backend.apirest.models.services.ITdpagosonlineService;
 
-//@CrossOrigin(origins = { "http://localhost:4200", "http://192.168.1.190:8080" })
+
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api")
