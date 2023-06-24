@@ -34,7 +34,7 @@ import net.sf.jasperreports.engine.JasperRunManager;
 import net.sf.jasperreports.engine.util.JRSaver;
 
 
-//@CrossOrigin(origins = { "http://localhost:4200", "http://192.168.1.190:8080" })
+
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api")
