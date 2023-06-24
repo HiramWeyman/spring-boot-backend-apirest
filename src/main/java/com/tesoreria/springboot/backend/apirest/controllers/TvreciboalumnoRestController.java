@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tesoreria.springboot.backend.apirest.models.dao.ITvreciboalumnoDao;
 import com.tesoreria.springboot.backend.apirest.models.entity.Tvreciboalumno;
 
-//@CrossOrigin(origins = { "http://localhost:4200", "http://192.168.1.190:8080" })
+
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api")
