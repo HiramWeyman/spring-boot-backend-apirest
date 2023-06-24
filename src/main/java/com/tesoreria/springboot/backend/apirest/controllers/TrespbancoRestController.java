@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tesoreria.springboot.backend.apirest.models.entity.Trespbanco;
 import com.tesoreria.springboot.backend.apirest.models.services.ITrespbancoService;
 
-//@CrossOrigin(origins = { "http://localhost:4200", "http://192.168.1.190:8080" })
+
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api")
@@ -47,14 +47,10 @@ public class TrespbancoRestController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public void insert(@PathVariable String tres_folio) throws Exception {
 		
-		//String Url = "https://evopaymentsmexico.gateway.mastercard.com/api/rest/version/52/merchant/TEST2017ECOMM1/order/"+ref_banco+"";
-		//String Url = "https://evopaymentsmexico.gateway.mastercard.com/api/rest/version/52/merchant/TEST1143891/order/"+tres_folio+"";
-		String Url = "https://evopaymentsmexico.gateway.mastercard.com/api/rest/version/52/merchant/1143891/order/"+tres_folio+"";
+		String Url = "https://evopaymentsmexico.gateway.mastercard.com/api/rest/version/52/merchant/TEST2017ECOMM1/order/"+ref_banco+"";
 		URL url = new URL(Url);
 		URLConnection uc = url.openConnection();
-		//String userpass = "merchant.TEST2017ECOMM1" + ":" + "ac50e16a0c295b971ed55b0086ad0262";
-		//String userpass = "merchant.TEST1143891" + ":" + "2d6535bb8bff89759b283e56823a8ad5";
-		String userpass = "merchant.1143891" + ":" + "8d56e8d4b2753f1ac9286a70ec23f779";
+		String userpass = "merchant.TEST2017ECOMM1" + ":" + "ac50e16a0c295b971ed55b0086ad0262";
 		String basicAuth = "Basic " + new String(Base64.getEncoder().encode(userpass.getBytes()));
 		uc.setRequestProperty ("Authorization", basicAuth);
 		
@@ -88,7 +84,7 @@ public class TrespbancoRestController {
 			try {
 	            Class.forName("oracle.jdbc.OracleDriver");
 	        
-				conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.1.184:1527:sai2", "TESOPORTAL", "TP1968");
+				conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1528:sai3", "", "");
 		        if (conn != null)
 		            System.out.println("Database Connected");
 		        else
