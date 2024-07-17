@@ -47,10 +47,10 @@ public class TrespbancoRestController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public void insert(@PathVariable String tres_folio) throws Exception {
 		
-		String Url = "https://evopaymentsmexico.gateway.mastercard.com/api/rest/version/52/merchant/TEST2017ECOMM1/order/"+ref_banco+"";
+		String Url = "https://evopaymentsmexico.gateway.mastercard.com"+ref_banco+"";
 		URL url = new URL(Url);
 		URLConnection uc = url.openConnection();
-		String userpass = "merchant.TEST2017ECOMM1" + ":" + "ac50e16a0c295b971ed55b0086ad0262";
+		String userpass = "" + ":" + "";
 		String basicAuth = "Basic " + new String(Base64.getEncoder().encode(userpass.getBytes()));
 		uc.setRequestProperty ("Authorization", basicAuth);
 		
