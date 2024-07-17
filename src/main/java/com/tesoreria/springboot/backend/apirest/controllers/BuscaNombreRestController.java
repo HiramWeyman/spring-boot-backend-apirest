@@ -27,7 +27,7 @@ public class BuscaNombreRestController {
 		try {
             Class.forName("oracle.jdbc.OracleDriver");
         
-		conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.1.184:1527:sai2", "TESOPORTAL", "TP1968");
+		conn = DriverManager.getConnection("jdbc:oracle:thin:@localhist:1527:sai7", "xxxx", "xxxx");
         if (conn != null)
             System.out.println("Database Connected");
         else
